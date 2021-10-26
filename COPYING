@@ -1,9 +1,5 @@
-chez-a-sync is (like chez scheme 9.4/9.5) released under the Apache
-2.0 license, as set out below.  The pattern matcher in the
-a-sync/helper/match.ss file has been released by its authors under the
-MIT license as set out therein.
-
-Chris Vine, 2017
+The code in this repository is copyright Chris Vine, 2021 and released
+under the Apache License, Version 2.0, below.
 
 ===========================================================================
 
