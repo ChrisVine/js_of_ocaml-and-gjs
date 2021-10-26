@@ -31,7 +31,7 @@ typedef struct _HelloPair {
 
 #define HELLO_PAIR_TYPE (hello_pair_get_type())
 
-GType hello_pair_get_type();
+GType hello_pair_get_type(void);
 
 /* We don't want hello_pair_copy and hello_pair_free to be
    introspected (they are for the implementation only), so annotate
@@ -39,12 +39,12 @@ GType hello_pair_get_type();
 /**
   * hello_pair_copy: (skip)
   */
-HelloPair* hello_pair_copy (HelloPair* pair);
+HelloPair* hello_pair_copy(HelloPair* pair);
 
 /**
  * hello_pair_free: (skip)
  */
-void hello_pair_free (HelloPair* pair);
+void hello_pair_free(HelloPair* pair);
 
 void hello_pair_print(HelloPair* pair);
 
