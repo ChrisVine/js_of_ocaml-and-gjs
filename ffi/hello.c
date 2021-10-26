@@ -12,18 +12,18 @@ void hello_invoke(HelloCb func) {
   fflush(stdout);
 }
 
-HelloPair* hello_pair_copy (HelloPair* pair) {
+HelloPair* hello_pair_copy(HelloPair* pair) {
   HelloPair* ret = malloc(sizeof(HelloPair));
   ret->first = pair->first;
   ret->second = pair->second;
   return ret;
 }
 
-void hello_pair_free (HelloPair* pair) {
+void hello_pair_free(HelloPair* pair) {
   free(pair);
 }
 
-GType hello_pair_get_type (void) {
+GType hello_pair_get_type(void) {
     static GType type = 0;
     if (G_UNLIKELY (!type))
         type = g_boxed_type_register_static("HelloPair",
