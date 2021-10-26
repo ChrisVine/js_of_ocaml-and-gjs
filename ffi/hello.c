@@ -1,5 +1,6 @@
 #include <hello.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void hello_say(const char* name) {
   printf("Hello, %s\n", name);
