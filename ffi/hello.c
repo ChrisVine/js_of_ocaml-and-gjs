@@ -30,7 +30,13 @@ static void hello_pair_free(HelloPair* pair) {
   free(pair);
 }
 
-/* This macro constructs a function hello_pair_get_type() which will
-   call g_boxed_type_register_static() for the "HelloPair" type */
+/* This macro constructs a function hello_pair_get_type() with the
+   signature:
+
+     GType hello_pair_get_type(void)
+
+   which will call g_boxed_type_register_static() for the "HelloPair"
+   type on first invocation. */
+
 G_DEFINE_BOXED_TYPE(HelloPair, hello_pair,
 		    hello_pair_copy, hello_pair_free)
