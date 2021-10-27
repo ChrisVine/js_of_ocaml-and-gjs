@@ -16,7 +16,8 @@ As regards the use of C, if C function arguments and return values are
 scalars, GBytes, strings or functions this is straightforward but
 structs of these generally require the use of a GBoxedType wrapping
 (see the hello.h and hello.c files in the ffi directory).  More
-complex arrangements may require full-on GObjects, which is a pain.
+complex arrangements, particularly ones requiring mutable instance
+data, may require full-on GObjects, which is a pain.
 
 Other points to note are:
 

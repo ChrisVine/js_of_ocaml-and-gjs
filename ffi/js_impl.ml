@@ -12,10 +12,18 @@ let hello = imports##.gi##.Hello
 let say name = ignore (hello##say (Js.string name))
 let invoke cb = ignore (hello##invoke (Js.wrap_callback cb))
 
+(* Objects constructed by make_pair are of GBoxed type and are best
+   treated as immutable, as a way of passing structured information
+   from Javascript to C or vice versa: for more see
+   http://webreflection.github.io/gjs-documentation/GObject-2.0/GObject.TYPE_BOXED.html
+   Accordingly, the properties below are made read only.  If something
+   different and more complex is required, consider constructing a
+   full-on GObject in the relevant C code instead of a GBoxed type.
+   *)
 class type hello_pair =
   object
-    method first : int Js.prop
-    method second : int Js.prop
+    method first : int Js.readonly_prop
+    method second : int Js.readonly_prop
     method print : unit Js.meth
 end
 
