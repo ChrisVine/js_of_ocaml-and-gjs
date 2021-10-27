@@ -26,10 +26,6 @@ typedef struct _HelloPair {
   int second;
 } HelloPair;
 
-/* hello_pair_get_type() is provided by the G_DEFINE_BOXED_TYPE macro
-   in hello.c */
-#define HELLO_PAIR_TYPE (hello_pair_get_type())
-
 void hello_pair_print(HelloPair* pair);
 
 #endif /* HELLO_H */
