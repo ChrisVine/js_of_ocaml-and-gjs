@@ -24,8 +24,6 @@ class type hello_pair =
   object
     method first : int Js.readonly_prop
     method second : int Js.readonly_prop
-    method print : unit Js.meth
-    method double : hello_pair Js.t Js.meth
 end
 
 let make_pair first second : hello_pair Js.t =
@@ -34,3 +32,9 @@ let make_pair first second : hello_pair Js.t =
                    val first = first
                    val second = second
                  end)
+
+let print_pair pair =
+  hello##print_pair_ pair
+
+let double_pair pair =
+  hello##double_pair_ pair

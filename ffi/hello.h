@@ -34,8 +34,14 @@ typedef struct _HelloPair {
    here by the scanner. */
 GType hello_pair_get_type(void);
 
-void hello_pair_print(HelloPair* pair);
+/* hello_print_pair() and not hello_pair_print() - the latter would
+   cause the the scanner to treat the function as the 'print' method
+   of a pair object, not as a free-standing function.  That would work
+   fine, but since the pair is a bare struct, it does not seem right
+   presentionally. */
+void hello_print_pair(HelloPair* pair);
 
-HelloPair* hello_pair_double(HelloPair* pair);
+/* hello_double_pair() and not hello_pair_double() - see above. */
+HelloPair* hello_double_pair(HelloPair* pair);
 
 #endif /* HELLO_H */

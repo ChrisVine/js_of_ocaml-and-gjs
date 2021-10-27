@@ -12,12 +12,12 @@ void hello_invoke(HelloCb func) {
   fflush(stdout);
 }
 
-void hello_pair_print(HelloPair* pair) {
+void hello_print_pair(HelloPair* pair) {
   printf("first is %d, second is %d\n", pair->first, pair->second);
   fflush(stdout);
 }
 
-HelloPair* hello_pair_double(HelloPair* pair) {
+HelloPair* hello_double_pair(HelloPair* pair) {
   HelloPair* ret = malloc(sizeof(HelloPair));
   ret->first = pair->first * 2;
   ret->second = pair->second * 2;

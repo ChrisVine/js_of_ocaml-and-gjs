@@ -7,8 +7,8 @@ class type hello_pair =
   object
     method first : int Js.readonly_prop
     method second : int Js.readonly_prop
-    method print : unit Js.meth
-    method double : hello_pair Js.t Js.meth
 end
 
 val make_pair : int -> int -> hello_pair Js.t
+val print_pair : hello_pair Js.t -> unit
+val double_pair : hello_pair Js.t ->  hello_pair Js.t
