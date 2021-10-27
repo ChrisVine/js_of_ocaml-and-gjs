@@ -22,8 +22,7 @@ void hello_pair_print(HelloPair* pair) {
 
 static HelloPair* hello_pair_copy(HelloPair* pair) {
   HelloPair* ret = malloc(sizeof(HelloPair));
-  ret->first = pair->first;
-  ret->second = pair->second;
+  *ret = *pair;
   return ret;
 }
 
