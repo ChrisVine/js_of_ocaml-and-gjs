@@ -8,4 +8,6 @@ let () =
 
 let () =
   let pair = Js_impl.make_pair 1 2 in
-  pair##print
+  pair##print ;
+  let doubled = pair##double in
+  doubled##print

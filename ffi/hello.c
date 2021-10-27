@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <glib.h>
-#include <glib-object.h>
-
 void hello_say(const char* name) {
   printf("Hello, %s\n", name);
   fflush(stdout);
@@ -18,6 +15,13 @@ void hello_invoke(HelloCb func) {
 void hello_pair_print(HelloPair* pair) {
   printf("first is %d, second is %d\n", pair->first, pair->second);
   fflush(stdout);
+}
+
+HelloPair* hello_pair_double(HelloPair* pair) {
+  HelloPair* ret = malloc(sizeof(HelloPair));
+  ret->first = pair->first * 2;
+  ret->second = pair->second * 2;
+  return ret;
 }
 
 static HelloPair* hello_pair_copy(HelloPair* pair) {

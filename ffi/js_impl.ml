@@ -25,6 +25,7 @@ class type hello_pair =
     method first : int Js.readonly_prop
     method second : int Js.readonly_prop
     method print : unit Js.meth
+    method double : hello_pair Js.t Js.meth
 end
 
 let make_pair first second : hello_pair Js.t =
