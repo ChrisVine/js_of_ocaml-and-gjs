@@ -34,7 +34,8 @@ Other points to note are:
     channels will compile, but if run will raise the Sys_error
     exception if it tries to open a file).  To carry out file, socket
     or other i/o you can use the wrapped functions from glib's Gio
-    module (and some of glib's logging functions are also available).
+    module (and some of glib's logging functions are also available);
+    see also point 7 below.
 
 2.  gjs has a non-standard module system for its bindings.  All its C
     and other bindings are available via the 'imports' object provided
@@ -83,3 +84,19 @@ Other points to note are:
     ocaml wrapping in js_of_ocaml's Typed_array.uint8Array type, and
     can be converted to an ocaml string (and thence to the ocaml
     Bytes.t type) via the Typed_array.String.of_uint8Array function.
+
+7.  As mentioned above, glib's Gio module provides various i/o
+    functions that can be used.  These are modelled on java.io;
+    java.io isn't great but if you are familiar with it you will feel
+    at home.  However at the time of writing (this may change) gjs
+    does not handle Gio functions which take user-provided buffers as
+    out parameters for reading from input streams.  This means that
+    only Gio.InputStream.read_bytes, Gio.InputStream.read_bytes_async
+    and Gio.BufferedInputStream.read_byte, together with any of
+    Gio.DataInputStream's read functions, can be used for reading.
+    This is not quite as bad as it seems: Gio.DataInputStream has a
+    reasonably usable set of reading functions (although its async
+    functions are somewhat text-oriented), and binary records can be
+    read with Gio.InputStream.read_bytes and
+    Gio.InputStream.read_bytes_async, so in most cases i/o can be done
+    without having to write local bindings.
