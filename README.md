@@ -94,9 +94,9 @@ Other points to note are:
     only Gio.InputStream.read_bytes, Gio.InputStream.read_bytes_async
     and Gio.BufferedInputStream.read_byte, together with any of
     Gio.DataInputStream's read functions, can be used for reading.
-    This is not quite as bad as it seems: Gio.DataInputStream has a
-    reasonably usable set of reading functions (although its async
-    functions are somewhat text-oriented), and binary records can be
-    read with Gio.InputStream.read_bytes and
-    Gio.InputStream.read_bytes_async, so in most cases i/o can be done
-    without having to write local bindings.
+    Gio.DataInputStream has a reasonably usable set of reading
+    functions (although its async functions are somewhat
+    text-oriented), and binary records can be read with
+    Gio.InputStream.read_bytes and Gio.InputStream.read_bytes_async,
+    so in most cases i/o can be done without having to write local
+    bindings.
