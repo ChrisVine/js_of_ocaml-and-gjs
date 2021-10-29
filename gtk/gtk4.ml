@@ -43,7 +43,7 @@ let startup_cb app =
                                              end) in
   ignore (beep_act##connect (Js.string "activate")
                             (Js.wrap_callback (fun _ _ ->
-                                 ignore ((gdk##.Display##get_default_)##beep)))) ;
+                                 (gdk##.Display##get_default_)##beep))) ;
   ignore (app##add_action_ beep_act) ;
   (* this is the app.quit action *)
   let quit_act = new_gjs gio##.SimpleAction (object%js
