@@ -63,7 +63,7 @@ let construct_gui app : unit =
                        end) in
   let button =
     new_gjs gtk##.Button (object%js
-                            val label = Js.string "OK"
+                            val label = Js.string "Click me"
                           end) in
   let scrolled_text = Scrolled_text.make () in
   ignore (win##set_child_ box) ;
