@@ -1,14 +1,19 @@
-all: gtk4.js
+# 'make build' to build the program
 
-gtk4.byte: gtk4.ml
-	ocamlfind ocamlc -package js_of_ocaml,js_of_ocaml-ppx  \
-	-linkpkg -o $@ $<
-	chmod 0644 $@
+# 'make run' to run locally the program so built
 
-gtk4.js: gtk4.byte
-	js_of_ocaml --custom-header="#!/usr/bin/env gjs" $<
-	chmod 0755 $@
+.PHONY: build
+build:
+	dune build --profile release
+
+.PHONY: debug
+debug:
+	dune build --profile dev
+
+.PHONY: run
+run:
+	@exec gjs _build/default/main.bc.js
 
 .PHONY: clean
 clean:
-	rm -rf *.js *.cmi *.cmo *.byte
+	rm -rf _build

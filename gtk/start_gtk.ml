@@ -1,28 +1,5 @@
 open Js_of_ocaml
-
-let print_prim = Js.Unsafe.global##.print
-let print_line (s:string) : unit =
-  Js.Unsafe.(fun_call print_prim [| inject (Js.string s) |])
-
-let imports = Js.Unsafe.global##.imports
-let _ = imports##.package##require (object%js val _Gtk = Js.string "4.0" end)
-(* alternatively instead of the above package operation we could do:
-let _ = imports##.gi##.versions##.Gtk := Js.string "4.0"
-*)
-
-let glib = imports##.gi##.GLib
-let gio = imports##.gi##.Gio
-let gdk = imports##.gi##.Gdk
-let gtk = imports##.gi##.Gtk
-
-(* A utility function for constructing gjs javascript objects, which
-   forces 'constr' to evaluate so that the ##. accessor ppx can be
-   used to pass in the constructor function.  gjs constructors always
-   take a single argument (a javascript object) containing properties
-   of the type to be constructed.  That object can be constructed with
-   the object%js ppx. *)
-let new_gjs constr props =
-  new%js constr props
+open Imports
 
 let startup_cb app =
   (* construct menubar and menu objects *)
@@ -58,43 +35,49 @@ let construct_gui app : unit =
                                                val application = app
                                                val title = Js.string "gtk4"
                                                val show_menubar_ = Js._true
+                                               val default_width_ = 600
+                                               val default_height_ = 400
                                              end) in
   let box =
     new_gjs gtk##.Box (object%js
                          val orientation = gtk##.Orientation##.VERTICAL
                          val homogeneous = Js._false
                          val spacing = 2
-                         val valign = gtk##.Align##.CENTER
                          val margin_bottom_ = 10
                          val margin_top_ = 10
                          val margin_start_ = 10
                          val margin_end_ = 10
+                         val vexpand = Js._true
+                         val valign = gtk##.Align##.FILL
                        end) in
-  let label =
-    new_gjs gtk##.Label (object%js
-                           val label = Js.string "Hello world"
-                           val vexpand = Js._true
-                           val valign = gtk##.Align##.CENTER
-                         end) in
   let button_box =
     new_gjs gtk##.Box (object%js
                          val orientation = gtk##.Orientation##.HORIZONTAL
                          val homogeneous = Js._true
                          val spacing = 5
+                         val vexpand = Js._false
                          val valign = gtk##.Align##.CENTER
+                         val hexpand = Js._false
+                         val halign = gtk##.Align##.CENTER
+                         val margin_top_ = 10
                        end) in
   let button =
     new_gjs gtk##.Button (object%js
                             val label = Js.string "OK"
                           end) in
+  let scrolled_text = Scrolled_text.make () in
   ignore (win##set_child_ box) ;
-  ignore (box##append label) ;
+  ignore (box##append scrolled_text) ;
   ignore (box##append button_box) ;
   ignore (button_box##append button) ;
   ignore (button##connect (Js.string "clicked")
                           (Js.wrap_callback
-                             (fun w -> print_line "Clicked"))) ;
+                             (fun _ -> Scrolled_text.append scrolled_text "\nClicked"))) ;
   ignore (win##set_default_widget_ button) ;
+
+  Scrolled_text.append scrolled_text "hello" ;
+  Scrolled_text.append scrolled_text " world" ;
+
   ignore (win##show)
 
 let activate_cb app : unit =
@@ -102,7 +85,7 @@ let activate_cb app : unit =
     Some win -> ignore (win##present)
   | None -> construct_gui app
 
-let _ =
+let start () =
   ignore (glib##set_prgname_ (Js.string "gtk4")) ;
   let app =
     new_gjs gtk##.Application (object%js
@@ -112,3 +95,4 @@ let _ =
   ignore (app##connect (Js.string "activate") (Js.wrap_callback activate_cb)) ;
 
   ignore (app##run Js.null)
+ 
