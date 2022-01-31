@@ -21,11 +21,11 @@ instance data, may require full-on GObjects, which is a pain.
 
 Other points to note are:
 
-1.  gjs does not print console.log to stdout so js_of_ocaml's printing
-    functions do not work correctly (for example, Printf.sprintf is
-    OK, but print_string and Printf.printf aren't).  However, for
-    printing to console, spidermonkey and so gjs does provide 'print'
-    and 'printerr' functions in the global object which can be used
+1.  js_of_ocaml's printing functions to stdout and stderr when run by
+    gjs do not map directly to the relevant descriptors (for example,
+    Printf.sprintf is OK, but print_string and Printf.printf aren't).
+    However, for printing to console, gjs does provide 'print' and
+    'printerr' functions in the global object which can be used
     instead.  Furthermore spidermonkey sandboxing means that you will
     get a Sys_error exception "No such file or directory" if you try
     to use ocaml channels to access the local file system in code
