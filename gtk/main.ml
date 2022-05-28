@@ -1,1 +1,1 @@
-Start_gtk.start ()
+let () = Start_gtk.start ()

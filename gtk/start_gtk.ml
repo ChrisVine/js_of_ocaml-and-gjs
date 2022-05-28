@@ -72,7 +72,7 @@ let construct_gui app : unit =
   ignore (button_box##append button) ;
   ignore (button##connect (Js.string "clicked")
                           (Js.wrap_callback
-                             (fun _ -> Scrolled_text.append scrolled_text "\nClicked"))) ;
+                             (fun _ -> Callbacks.on_clicked scrolled_text))) ;
   ignore (win##set_default_widget_ button) ;
 
   Scrolled_text.append scrolled_text "hello" ;
