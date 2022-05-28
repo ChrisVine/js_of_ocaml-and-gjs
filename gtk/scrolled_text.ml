@@ -11,7 +11,9 @@ class type scrolled_text =
     method get_child_ : 'a Js.t Js.meth
   end
 
-let make () : scrolled_text Js.t =
+type t = scrolled_text Js.t
+
+let make () : t =
   let scrolled_window =
     new_gjs gtk##.ScrolledWindow (object%js
                                     val has_frame_ = Js._true
@@ -30,13 +32,13 @@ let make () : scrolled_text Js.t =
   ignore (scrolled_window##set_child_ text_view) ;
   scrolled_window
 
-let append (scrolled_text : scrolled_text Js.t) text =
-  let text_view = scrolled_text##get_child_ in
+let append (t:t) text =
+  let text_view = t##get_child_ in
   let buffer = text_view##get_buffer_ in
   let iter = buffer##get_end_iter_ in
   ignore (buffer##insert iter (Js.string text) (-1)) ;
 
-  let adj = scrolled_text##get_vadjustment_ in
+  let adj = t##get_vadjustment_ in
   let scrolling =
     if adj##get_value_ >= adj##get_upper_ -. adj##get_page_size_ -. 1e-12 then true
     else false in
