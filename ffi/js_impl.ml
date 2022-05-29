@@ -12,6 +12,11 @@ let hello = imports##.gi##.Hello
 let say name = ignore (hello##say (Js.string name))
 let invoke cb = ignore (hello##invoke (Js.wrap_callback cb))
 
+(* hello##get_bytes returns a boxed GBytes value, which can be
+   converted to a Typed_array.uint8Array value by gjs's
+   imports##.byteArray##fromGBytes function *)
+let get_bytes () = imports##.byteArray##fromGBytes hello##get_bytes_
+
 (* Objects constructed by make_pair are of GBoxed type and are best
    treated as immutable, as a way of passing structured information
    from Javascript to C or vice versa.  The gjs implementation may

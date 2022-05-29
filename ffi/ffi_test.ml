@@ -7,6 +7,10 @@ let () =
   Js_impl.invoke cb
 
 let () =
+  let open Js_of_ocaml in
+  Js_impl.say @@ Typed_array.String.of_uint8Array @@ Js_impl.get_bytes ()
+
+let () =
   let pair = Js_impl.make_pair 1 2 in
   Js_impl.print_pair pair ;
   let doubled = Js_impl.double_pair pair in

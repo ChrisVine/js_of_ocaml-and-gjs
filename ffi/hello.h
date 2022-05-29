@@ -17,12 +17,18 @@ typedef int (*HelloCb)(void);
  */
 void hello_invoke(HelloCb func);
 
+#include <glib.h>
+#include <glib-object.h>
+
+/* Example of returning an array of bytes from C in the form of a
+   GBytes object as boxed by GObject's GBoxed.  The GBytes return
+   value requires including GLib-2.0 when calling up g-ir-scanner. */
+
+GBytes* hello_get_bytes(void);
+
 /* Below: example of function taking or returning a struct (record).
    The easiest way of doing this with gjs is using GBoxedType, so
    enabling a javascript constructor to be invoked for it. */
-
-#include <glib.h>
-#include <glib-object.h>
 
 typedef struct _HelloPair {
   int first;

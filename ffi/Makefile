@@ -19,7 +19,8 @@ VERSION=0.1
 GI_SCANNER=g-ir-scanner --warn-all --output=$(NAMESPACE)-$(VERSION).gir \
 	   --namespace=$(NAMESPACE) --nsversion=$(VERSION)  \
 	   --identifier-prefix=$(IDENTIFIER_PREFIX) --symbol-prefix=$(SYMBOL_PREFIX) \
-	   --library-path="." --library=$(SONAME) --pkg=gobject-2.0 hello.h
+	   --library-path="." --library=$(SONAME) --include=GLib-2.0 \
+	   --pkg=gobject-2.0 hello.h
 
 GI_COMPILER=g-ir-compiler --output=$(NAMESPACE)-$(VERSION).typelib $(NAMESPACE)-$(VERSION).gir
 

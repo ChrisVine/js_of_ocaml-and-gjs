@@ -17,6 +17,11 @@ void hello_print_pair(HelloPair* pair) {
   fflush(stdout);
 }
 
+GBytes* hello_get_bytes(void) {
+  char arr[] = "I am a GBytes return value";
+  return g_bytes_new(arr, sizeof(arr) - 1);
+}
+
 HelloPair* hello_double_pair(HelloPair* pair) {
   HelloPair* ret = malloc(sizeof(HelloPair));
   ret->first = pair->first * 2;
