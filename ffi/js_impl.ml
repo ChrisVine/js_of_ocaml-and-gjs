@@ -34,11 +34,7 @@ class type hello_pair =
 end
 
 let make_pair first second : hello_pair Js.t =
-  let constr = hello##.Pair in
-  new%js constr (object%js
-                   val first = first
-                   val second = second
-                 end)
+  hello##.Pair##new_ first second
 
 let print_pair pair =
   hello##print_pair_ pair

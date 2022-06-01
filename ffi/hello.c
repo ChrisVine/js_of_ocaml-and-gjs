@@ -29,6 +29,13 @@ HelloPair* hello_double_pair(HelloPair* pair) {
   return ret;
 }
 
+HelloPair* hello_pair_new(int first, int second) {
+  HelloPair* ret = malloc(sizeof(HelloPair));
+  ret->first = first;
+  ret->second = second;
+  return ret;
+}
+
 static HelloPair* hello_pair_copy(HelloPair* pair) {
   HelloPair* ret = malloc(sizeof(HelloPair));
   *ret = *pair;

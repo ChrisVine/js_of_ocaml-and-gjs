@@ -40,6 +40,8 @@ typedef struct _HelloPair {
    here by the scanner. */
 GType hello_pair_get_type(void);
 
+HelloPair* hello_pair_new(int first, int second);
+
 /* hello_print_pair() and not hello_pair_print() - the latter would
    cause the the scanner to treat the function as the 'print' method
    of a pair object, not as a free-standing function.  That would work
