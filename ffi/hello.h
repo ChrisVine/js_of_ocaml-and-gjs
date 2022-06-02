@@ -26,11 +26,12 @@ void hello_invoke(HelloCb func);
 
 GBytes* hello_get_bytes(void);
 
-/* Below: example of C function taking a struct (record) of immediate
-   types from javascript/ocaml.  gjs will provide a constructor taking
-   a javascript object with the field values, which can be invoked
-   using new%js syntax, and which will generate an introspectable
-   GBoxed object automatically. */
+/* Below: example of C function taking a struct (record) of entities
+   (as recognised by gjs and gobject-introspection) from
+   javascript/ocaml.  gjs will provide a constructor taking a
+   javascript object with the field values, which can be invoked using
+   new%js syntax, and which will generate an introspectable GBoxed
+   object automatically. */
 
 typedef struct _HelloPair {
   int first;
