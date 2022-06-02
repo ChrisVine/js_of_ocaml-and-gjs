@@ -15,3 +15,9 @@ let () =
   Js_impl.print_pair pair ;
   let doubled = Js_impl.double_pair pair in
   Js_impl.print_pair doubled
+
+let () =
+  let triple = Js_impl.make_triple 1 2 3 in
+  Js_impl.print_triple triple ;
+  let doubled = Js_impl.double_triple triple in
+  Js_impl.print_triple doubled
