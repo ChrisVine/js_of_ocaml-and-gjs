@@ -49,7 +49,4 @@ HelloPair* hello_pair_new(int first, int second);
    presentionally. */
 void hello_print_pair(HelloPair* pair);
 
-/* hello_double_pair() and not hello_pair_double() - see above. */
-HelloPair* hello_double_pair(HelloPair* pair);
-
 #endif /* HELLO_H */

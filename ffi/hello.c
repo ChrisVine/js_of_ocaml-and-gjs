@@ -12,21 +12,9 @@ void hello_invoke(HelloCb func) {
   fflush(stdout);
 }
 
-void hello_print_pair(HelloPair* pair) {
-  printf("first is %d, second is %d\n", pair->first, pair->second);
-  fflush(stdout);
-}
-
 GBytes* hello_get_bytes(void) {
   char arr[] = "I am a GBytes return value";
   return g_bytes_new(arr, sizeof(arr) - 1);
-}
-
-HelloPair* hello_double_pair(HelloPair* pair) {
-  HelloPair* ret = malloc(sizeof(HelloPair));
-  ret->first = pair->first * 2;
-  ret->second = pair->second * 2;
-  return ret;
 }
 
 HelloPair* hello_pair_new(int first, int second) {
@@ -34,6 +22,11 @@ HelloPair* hello_pair_new(int first, int second) {
   ret->first = first;
   ret->second = second;
   return ret;
+}
+
+void hello_print_pair(HelloPair* pair) {
+  printf("first is %d, second is %d\n", pair->first, pair->second);
+  fflush(stdout);
 }
 
 static HelloPair* hello_pair_copy(HelloPair* pair) {

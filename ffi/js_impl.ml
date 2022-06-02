@@ -39,5 +39,5 @@ let make_pair first second : hello_pair Js.t =
 let print_pair pair =
   hello##print_pair_ pair
 
-let double_pair pair =
-  hello##double_pair_ pair
+let double_pair (pair:hello_pair Js.t) =
+  hello##.Pair##new_ (pair##.first * 2) (pair##.second *2)
