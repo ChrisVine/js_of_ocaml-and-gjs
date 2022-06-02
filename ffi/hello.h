@@ -26,11 +26,11 @@ void hello_invoke(HelloCb func);
 
 GBytes* hello_get_bytes(void);
 
-/* Below: example of function taking or returning a struct (record) of
-   immediate types.  gjs will provide a constructor taking a
-   javascript object with the field values, which can be invoked using
-   new%js syntax, and which will generate an introspectable GBoxed
-   object automatically. */
+/* Below: example of C function taking a struct (record) of immediate
+   types from javascript/ocaml.  gjs will provide a constructor taking
+   a javascript object with the field values, which can be invoked
+   using new%js syntax, and which will generate an introspectable
+   GBoxed object automatically. */
 
 typedef struct _HelloPair {
   int first;
@@ -44,7 +44,7 @@ typedef struct _HelloPair {
    presentionally. */
 void hello_print_pair(HelloPair* pair);
 
-/* Below: example of a function taking or returning a struct (record)
+/* Below: example of C functions taking or returning a struct (record)
    of arbitrary types.  In order to customize its construction,
    copying and freeing it is made a GBoxed type by hand.  For more
    complex structs, consider a reference counting implementation in
@@ -76,5 +76,8 @@ HelloTriple* hello_triple_new(int first, int second, int third);
    fine, but since the triple is a bare struct, it does not seem right
    presentionally. */
 void hello_print_triple(HelloTriple* triple);
+
+/* hello_double_triple() and not hello_triple_double() - see above */
+HelloTriple* hello_double_triple(HelloTriple* triple);
 
 #endif /* HELLO_H */

@@ -36,6 +36,11 @@ void hello_print_triple(HelloTriple* triple) {
   fflush(stdout);
 }
 
+HelloTriple* hello_double_triple(HelloTriple* triple) {
+  hello_triple_new(triple->first * 2, triple->second * 2,
+		   triple->third * 2);
+}
+
 static HelloTriple* hello_triple_copy(HelloTriple* triple) {
   HelloTriple* ret = malloc(sizeof(HelloTriple));
   *ret = *triple;

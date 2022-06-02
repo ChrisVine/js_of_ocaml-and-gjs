@@ -70,4 +70,4 @@ let print_triple triple =
   hello##print_triple_ triple
 
 let double_triple triple =
-  make_triple (triple##.first * 2) (triple##.second *2) (triple##.third *2)
+  hello##double_triple_ triple
