@@ -76,14 +76,18 @@ Other points to note are:
     parameters.
 
 6.  gjs provides a zoo of array-like types, in addition to ocaml
-    arrays and Javascript arrays.  gjs's ByteArray objects are now the
-    same as Javascript Uint8Array objects: the two are in effect
-    aliases.  You can convert a glib GBytes object to and from a
-    Uint8Array/ByteArray object using imports\##.byteArray\##fromGBytes
-    and imports\##.byteArray\##toGBytes respectively.  Uint8Array has
-    an ocaml wrapping in js_of_ocaml's Typed_array.uint8Array type,
-    and can be converted to an ocaml string (and thence to the ocaml
-    Bytes.t type) via the Typed_array.String.of_uint8Array function.
+    arrays and Javascript arrays.  You can convert a glib GBytes
+    object to and from a Uint8Array object using the
+    imports\##.byteArray\##fromGBytes and
+    imports\##.byteArray\##toGBytes static functions respectively; or
+    in more recent versions of gjs you can convert from GBytes to
+    Uint8Array by means of the GLib\##.Bytes\##.toArray instance
+    method, and from Uint8Array to GBytes by applying new%js to the
+    GLib\##.Bytes constructor and passing the Uint8Array object as the
+    constructor's argument.  Uint8Array has an ocaml wrapping in
+    js_of_ocaml's Typed_array.uint8Array type, and can be converted to
+    an ocaml string (and thence to the ocaml Bytes.t type) via the
+    Typed_array.String.of_uint8Array function.
 
 7.  As mentioned above, glib's Gio module provides various i/o
     functions that can be used.  These are modelled on java.io;
