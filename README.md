@@ -108,4 +108,6 @@ Other points to note are:
     text-oriented), and binary records can be read with
     Gio.InputStream.read_bytes and Gio.InputStream.read_bytes_async,
     so in most cases i/o can be done without having to write local
-    bindings.
+    bindings.  It is also relatively straightforward to write an Lwt
+    wrapper for a Gio async i/o operation using Lwt.task and
+    Lwt.wakeup_later, so hiding it behind a nice interface.
