@@ -61,7 +61,7 @@ Other points to note are:
     the property identifier names clash with an ocaml keyword, like
     'type', 'new' or 'method'; and you have to prepend an underscore
     for any property name beginning with a capital letter when using
-    the 'class type' or 'object%js' ppx'es.
+    the 'class type' or 'object%js' ppx'es.)
 
 4.  You cannot include the \##. ppx when in the same expression as
     uses the new%js ppx - so you can't do, say, 'new%js
@@ -84,9 +84,14 @@ Other points to note are:
     Uint8Array by means of the GLib\##.Bytes\##.toArray instance
     method, and from Uint8Array to GBytes by applying new%js to the
     GLib\##.Bytes constructor and passing the Uint8Array object as the
-    constructor's argument.  Uint8Array has an ocaml wrapping in
-    js_of_ocaml's Typed_array.uint8Array type, and can be converted to
-    an ocaml string (and thence to the ocaml Bytes.t type) via the
+    constructor's argument.  You cannot directly construct a glib
+    GByteArray object in Javascript using gjs - no Javascript
+    constructor is provided - but an introspected C function taking or
+    returning a GByteArray object will have this automatically mapped
+    by gobject-introspection/gjs from or to a Javascript Uint8Array
+    object on the Javascript side.  Uint8Array has an ocaml wrapping
+    in js_of_ocaml's Typed_array.uint8Array type, and can be converted
+    to an ocaml string (and thence to the ocaml Bytes.t type) via the
     Typed_array.String.of_uint8Array function.
 
 7.  As mentioned above, glib's Gio module provides various i/o
