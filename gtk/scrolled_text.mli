@@ -1,5 +1,3 @@
-open Js_of_ocaml
-
 (* The code in this directory does not in general provide public
    wrappers for the raw javascript entities presented by gjs by means
    of public 'class type ...' definitions.  Instead, where viable it
