@@ -37,17 +37,20 @@ Other points to note are:
     module (and some of glib's logging functions are also available);
     see also point 7 below.
 
-2.  gjs has a non-standard module system for its bindings.  All its C
-    and other bindings are available via the 'imports' object provided
-    by gjs in the global object.  Those available via
-    gobject-introspection are in Js.Unsafe.global\##.imports\##.gi, so
-    GTK is found in the Js.Unsafe.global\##.imports\##.gi\##.Gtk
-    object, and some modules (for example byteArray, mainLoop, cairo
-    and gettext) are made available by gjs directly in
-    Js.Unsafe.global\##.imports.  (Those made available directly in
-    imports are those in the modules/script directory in the gjs
-    source tarball.)  Although this is non-standard, it is easy to
-    use.
+2.  gjs does not support CommonJS modules.  All its C and other
+    bindings are available via the 'imports' object provided by gjs in
+    the global object.  Those available via gobject-introspection are
+    in Js.Unsafe.global\##.imports\##.gi, so GTK is found in the
+    Js.Unsafe.global\##.imports\##.gi\##.Gtk object, and some modules
+    (for example byteArray, mainLoop, cairo and gettext) are made
+    available by gjs directly in Js.Unsafe.global\##.imports.  (Those
+    made available directly in imports are those in the modules/script
+    directory in the gjs source tarball.)  Although this is
+    non-standard, it is easy to use.  Recent versions of gjs do
+    support ES6 modules, but the syntax of ES6 static modules is not
+    at the time of writing accepted by js_of_ocaml: there are
+    work-arounds for this but it is easier to use gjs's non-standard
+    module implementation.
 
 3.  js_of_ocaml's '##' and '##.' ppx's are challenged by
     gobject-introspection's use of underscores in function names.
