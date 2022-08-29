@@ -112,5 +112,5 @@ Other points to note are:
     Gio.InputStream.read_bytes and Gio.InputStream.read_bytes_async,
     so in most cases i/o can be done without having to write local
     bindings.  It is also relatively straightforward to write an Lwt
-    wrapper for a Gio async i/o operation using Lwt.task and
+    wrapper for a Gio async i/o operation using Lwt.task/Lwt.wait and
     Lwt.wakeup_later, so hiding it behind a nice interface.
